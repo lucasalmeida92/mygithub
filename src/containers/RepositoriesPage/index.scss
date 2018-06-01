@@ -1,0 +1,12 @@
+.RepositoriesPage {
+  &__instruction {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 15px;
+  }
+
+  &__content {
+    margin-top: 40px;
+    min-height: calc(100vh - 400px);
+  }
+}

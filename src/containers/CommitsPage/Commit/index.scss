@@ -1,0 +1,54 @@
+.Commit {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+
+  &__message {
+    font-weight: 700;
+    font-size: .9rem;
+    line-height: 1.4;
+    color: #2C3A47;
+  }
+
+  &__author-avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    margin-right: 7px;
+    background-color: #eee;
+  }
+
+  &__meta {
+    opacity: .5;
+    font-size: .7rem;
+    display: flex;
+    margin-top: 6px;
+    align-items: center;
+    transition: all 200ms ease-out;
+
+    p {
+      display: inline-block;
+
+      strong {
+        font-weight: 700;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  &__date {
+    opacity: .6;
+  }
+
+  &:hover {
+    .Commit {
+      &__message {
+        text-decoration: underline;
+        color: #3B3B98;
+      }
+
+      &__meta {
+        opacity: 1;
+      }
+    }
+  }
+}

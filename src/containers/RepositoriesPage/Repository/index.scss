@@ -1,0 +1,24 @@
+.Repository {
+  cursor: pointer;
+  display: block;
+  margin-bottom: 30px;
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  &:hover {
+    .Repository {
+      &__name {
+        font-weight: 700;
+      }
+    }
+
+  }
+}
+
+@media(max-width: 520px) {
+  .Repository {
+  }
+}

@@ -1,0 +1,57 @@
+.Header {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2C3A47;
+  height: 80px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  color: white;
+
+  &__title {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0;
+
+    a {
+      color: #fff;
+
+      .fa {
+        margin-right: -7px;
+        color: #FC427B;
+      }
+
+      em {
+        color: #CAD3C8;
+      }
+
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+        transform: scale(1.4);
+
+        .fa {
+          animation-duration: 200ms;
+          animation-name: pop;
+          animation-iteration-count: 2;
+          animation-direction: alternate;
+        }
+      }
+    }
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(.6);
+  }
+  100% {
+    transform: scale(1.3);
+ }
+}

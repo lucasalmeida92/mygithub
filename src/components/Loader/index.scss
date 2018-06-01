@@ -1,0 +1,22 @@
+.Loader.fa {
+  z-index: 999;
+  position: fixed;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+  font-size: 100px;
+  animation: pop 1s ease-out infinite;
+  text-shadow: 0 0 67px rgba(#ed4c79, .3);
+  color: #B33771;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

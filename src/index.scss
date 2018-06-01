@@ -1,0 +1,240 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* -- GENERAL -- */
+
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome.scss';
+
+$primary-color: #B33771;
+$primary-color-hover: #FC427B;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #2C3A47;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+h2 {
+  text-align: center;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  font-weight: 100;
+  color: #7f8c8d;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+  transition: all 100ms ease-out;
+
+  &:hover {
+    color: $primary-color-hover;
+  }
+}
+
+.box {
+  position: relative;
+  padding: 25px 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 0 rgba(#d1d8e0, 0.4);
+}
+
+@media(max-width: 520px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* -- FORM -- */
+label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+input,
+select {
+  display: block;
+  margin: 5px 5px 10px 0;
+  outline: none;
+  color: #2a394a;
+}
+
+select {
+  height: 42px;
+}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 42px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 17px;
+  border: 1px solid #d1d8e0;
+  background-color: #fff;
+  outline: none;
+
+  &:focus {
+    border-color: #778ca3;
+  }
+}
+
+.button,
+input[type=submit] {
+  display: inline-block;
+  line-height: 30px;
+  padding: 10px;
+  height: 50px;
+  margin: 10px 0;
+  min-width: 100px;
+  border: none;
+  font-size: 17px;
+  background-color: $primary-color;
+  color: #fff;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-color-hover;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.button {
+  &--small {
+    line-height: 16px;
+    height: 36px;
+    font-size: 15px;
+  }
+}
+
+/* -- GRID -- */
+.row {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.col {
+  flex-basis: 100%;
+
+  &--60 {
+    flex-basis: calc(60% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 60%;
+    }
+  }
+
+  &--50 {
+    flex-basis: calc(50% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 50%;
+    }
+  }
+
+  &--40 {
+    flex-basis: calc(40% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 40%;
+    }
+  }
+
+  &--33 {
+    flex-basis: calc(33.33% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 33%;
+    }
+  }
+
+  &--25 {
+    flex-basis: calc(25% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 25%;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@media(max-width: 520px) {
+  .col {
+    &--60,
+    &--50,
+    &--40,
+    &--33,
+    &--25 {
+      flex-basis: 100% !important;
+      margin-right: 0;
+    }
+  }
+}
