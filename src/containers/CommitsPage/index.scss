@@ -1,6 +1,10 @@
 .CommitsPage {
   &__content {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
     margin-top: 40px;
     min-height: calc(100vh - 400px);
+    box-shadow: 0 0 15px 0 rgba(#CAD3C8, 0.2);
   }
 }

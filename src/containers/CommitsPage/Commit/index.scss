@@ -1,12 +1,17 @@
 .Commit {
   border-bottom: 1px solid #eee;
-  padding: 10px;
+  padding: 15px;
 
   &__message {
     font-weight: 700;
     font-size: .9rem;
     line-height: 1.4;
     color: #2C3A47;
+
+    &:hover {
+      text-decoration: underline;
+      color: #3B3B98;
+    }
   }
 
   &__author-avatar {
@@ -40,10 +45,11 @@
   }
 
   &:hover {
+    background-color: rgba(#F8EFBA, .5);
+
     .Commit {
       &__message {
-        text-decoration: underline;
-        color: #3B3B98;
+        font-size: .95rem;
       }
 
       &__meta {
