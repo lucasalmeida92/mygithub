@@ -2,16 +2,50 @@
   cursor: pointer;
   display: block;
   margin-bottom: 30px;
+  border-radius: 4px;
+  background: #fff;
+  padding: 15px;
+  color: #2C3A47;
+  box-shadow: 0 0 15px 0 rgba(#CAD3C8, 0.3);
+  transition: all 70ms linear;
 
   &__name {
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 700;
+    margin-bottom: 10px;
+    transition: all 70ms ease-out;
+  }
+
+  &__description {
+    color: #2C3A47;
+    font-size: 0.9rem;
+    font-weight: 200;
+    line-height: 1.5;
+  }
+
+  &__stars {
+    margin-top: 10px;
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    letter-spacing: -1.1px;
+    opacity: .7;
   }
 
   &:hover {
     .Repository {
       &__name {
-        font-weight: 700;
+        font-size: 1.3rem;
+      }
+
+      &__stars {
+        opacity: 1;
+        font-size: .95rem;
+        color: #2C3A47;
+
+        .fa {
+          color: #FC427B;
+        }
       }
     }
 
