@@ -29,8 +29,7 @@ class RepositoriesPage extends Component {
       username: ''
     };
 
-    this._handleUsernameChange = this._handleUsernameChange.bind(this);
-    this._handleLoadReposClick = this._handleLoadReposClick.bind(this);
+    this._handleRemoveUser = this._handleRemoveUser.bind(this);
     this._handleRepoClick = this._handleRepoClick.bind(this);
   }
 
@@ -47,18 +46,8 @@ class RepositoriesPage extends Component {
     this.props.fetchRepositories(username);
   }
 
-  _handleUsernameChange(e) {
-    const value = e.target.value;
-    this.setState({ username: value });
-  }
-
-  _handleLoadReposClick(e) {
-    e.preventDefault();
-    const username = this.state.username;
-    if(username.length > 0) {
-      this.props.fetchUserData(this.state.username);
-      this.props.fetchRepositories(username);
-    }
+  _handleRemoveUser() {
+    this.props.history.push('/');
   }
 
   _handleRepoClick(repoName) {
@@ -78,16 +67,6 @@ class RepositoriesPage extends Component {
             <Repository key={index} repository={repo} onRepoClick={this._handleRepoClick} />
           )
         });
-    } else if(!user.username){
-      pageContent = (
-        <div>
-          <p>Enter your GitHub username:</p>
-          <form>
-            <input type="text" placeholder="ex: lucasalmeida92" onChange={this._handleUsernameChange}/>
-            <button className="button" onClick={this._handleLoadReposClick}>Load Repositories</button>
-          </form>
-        </div>
-      );
     } else {
       pageContent = <p>No repository found. Please try again later.</p>;
     }
@@ -96,7 +75,7 @@ class RepositoriesPage extends Component {
       <div className="RepositoriesPage">
         <h2>Repositories</h2>
         <p className="RepositoriesPage__instruction">Click on a repository to see it's commits.</p>
-        <User />
+        <User onRemoveUser={this._handleRemoveUser} />
         <div className="RepositoriesPage__content">
           {
             repositories.isLoading || user.isLoading
