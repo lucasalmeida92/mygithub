@@ -33,9 +33,10 @@ export default (state = initialState, action) => {
         ...initialState
       }
     case actionTypes.SELECT_REPOSITORY:
-      let selectedRepository = state.list.filter(repo => {
-        repo.name === action.repoName
-      });
+      let selectedRepository = state.list.filter(repo => (
+        repo.name == action.repoName
+      ))[0];
+
       return {
         ...state,
         selectedRepository

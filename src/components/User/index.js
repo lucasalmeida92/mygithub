@@ -28,6 +28,7 @@ class User extends Component {
     e.preventDefault();
     this.props.removeUser();
     this.props.resetRepositories();
+    this.props.onRemoveUser && this.props.onRemoveUser();
   }
 
   render() {

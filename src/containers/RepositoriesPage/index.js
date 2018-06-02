@@ -29,9 +29,9 @@ class RepositoriesPage extends Component {
       username: ''
     };
 
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handleLoadReposClick = this.handleLoadReposClick.bind(this);
-    this.handleRepoClick = this.handleRepoClick.bind(this);
+    this._handleUsernameChange = this._handleUsernameChange.bind(this);
+    this._handleLoadReposClick = this._handleLoadReposClick.bind(this);
+    this._handleRepoClick = this._handleRepoClick.bind(this);
   }
 
   // componentDidMount() {
@@ -41,12 +41,12 @@ class RepositoriesPage extends Component {
   //   }
   // }
 
-  handleUsernameChange(e) {
+  _handleUsernameChange(e) {
     const value = e.target.value;
     this.setState({ username: value });
   }
 
-  handleLoadReposClick(e) {
+  _handleLoadReposClick(e) {
     e.preventDefault();
     const username = this.state.username;
     if(username.length > 0) {
@@ -55,7 +55,7 @@ class RepositoriesPage extends Component {
     }
   }
 
-  handleRepoClick(repoName) {
+  _handleRepoClick(repoName) {
     const username = this.props.user.username;
     this.props.selectRepository(repoName);
     this.props.history.push(`/user/${username}/repo/${repoName}`);
@@ -69,7 +69,7 @@ class RepositoriesPage extends Component {
       pageContent = repositories.list
         .map((repo, index) => {
           return(
-            <Repository key={index} repository={repo} onRepoClick={this.handleRepoClick} />
+            <Repository key={index} repository={repo} onRepoClick={this._handleRepoClick} />
           )
         });
     } else if(!user.username){
@@ -77,8 +77,8 @@ class RepositoriesPage extends Component {
         <div>
           <p>Enter your GitHub username:</p>
           <form>
-            <input type="text" placeholder="ex: lucasalmeida92" onChange={this.handleUsernameChange}/>
-            <button className="button" onClick={this.handleLoadReposClick}>Load Repositories</button>
+            <input type="text" placeholder="ex: lucasalmeida92" onChange={this._handleUsernameChange}/>
+            <button className="button" onClick={this._handleLoadReposClick}>Load Repositories</button>
           </form>
         </div>
       );
