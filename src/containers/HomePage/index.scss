@@ -1,0 +1,29 @@
+.HomePage {
+  &__content {
+    margin-top: 40px;
+    min-height: calc(100vh - 400px);
+  }
+
+  &__instruction {
+    font-size: 1.5rem;
+    font-weight: 100;
+  }
+
+  &__input[type=text] {
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: 0;
+    margin: 29px 0;
+    padding: 40px 30px;
+    text-align: center;
+
+    &::placeholder {
+      opacity: .5;
+    }
+  }
+
+  &__load-button {
+    width: 100%;
+    text-transform: uppercase;
+  }
+}

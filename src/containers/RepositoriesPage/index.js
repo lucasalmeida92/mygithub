@@ -34,12 +34,18 @@ class RepositoriesPage extends Component {
     this._handleRepoClick = this._handleRepoClick.bind(this);
   }
 
-  // componentDidMount() {
-  //   const username = this.props.user.username;
-  //   if(username) {
-  //     this.props.fetchRepositories(username);
-  //   }
-  // }
+  componentDidMount() {
+    let username;
+
+    if(!this.props.user.username) {
+      username = this.props.match.params.username;
+      this.props.fetchUserData(username);
+    } else {
+      username = this.props.user.username;
+    }
+
+    this.props.fetchRepositories(username);
+  }
 
   _handleUsernameChange(e) {
     const value = e.target.value;
@@ -58,7 +64,7 @@ class RepositoriesPage extends Component {
   _handleRepoClick(repoName) {
     const username = this.props.user.username;
     this.props.selectRepository(repoName);
-    this.props.history.push(`/user/${username}/repo/${repoName}`);
+    this.props.history.push(`/${username}/${repoName}`);
   }
 
   render() {
