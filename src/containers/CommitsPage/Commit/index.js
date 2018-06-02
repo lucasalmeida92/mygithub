@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FA from 'react-fontawesome';
 import './index.scss';
+import moment from 'moment';
 
 class Commit extends Component {
   render() {
@@ -18,7 +18,9 @@ class Commit extends Component {
                 ? commit.author.login
                 : commit.commit.author.name }
               </strong>
-              <span className="Commit__date">{ commit.commit.author.date }</span>
+              <span className="Commit__date">
+                { moment(commit.commit.author.date).startOf('hour').fromNow() }
+              </span>
             </p>
           </div>
         </div>

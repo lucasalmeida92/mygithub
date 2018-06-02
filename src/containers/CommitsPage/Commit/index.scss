@@ -1,6 +1,6 @@
 .Commit {
   border-bottom: 1px solid #eee;
-  padding: 15px;
+  padding: 15px 25px;
 
   &__message {
     font-weight: 700;
@@ -35,7 +35,7 @@
 
       strong {
         font-weight: 700;
-        margin-right: 15px;
+        margin-right: 10px;
       }
     }
   }
