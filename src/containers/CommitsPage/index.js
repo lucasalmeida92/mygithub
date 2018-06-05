@@ -29,6 +29,8 @@ class CommitsPage extends Component {
     super(props);
 
     this._handleRemoveUser = this._handleRemoveUser.bind(this);
+    this._addEndlessScrollingListenter = this._addEndlessScrollingListenter.bind(this);
+    this._loadMoreCommits = this._loadMoreCommits.bind(this);
   }
 
   componentDidMount() {
@@ -44,11 +46,27 @@ class CommitsPage extends Component {
       repoName = this.props.selectedRepository.name;
     }
 
-    this.props.fetchCommits(username, repoName);
+    this.props.fetchCommits(username, repoName, this.props.commits.page);
+    this._addEndlessScrollingListenter();
   }
 
   _handleRemoveUser() {
     this.props.history.push('/');
+  }
+
+  _addEndlessScrollingListenter() {
+    window.onscroll = function(e) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+          if(!this.props.commits.isLoading) this._loadMoreCommits();
+        }
+    }.bind(this);
+  }
+
+  _loadMoreCommits() {
+    const username = this.props.match.params.username;
+    const repoName = this.props.match.params.repoName;
+    const page = this.props.commits.page;
+    this.props.fetchCommits(username, repoName, page + 1);
   }
 
   render() {
@@ -79,12 +97,9 @@ class CommitsPage extends Component {
         <h2>Commits</h2>
         <User onRemoveUser={this._handleRemoveUser} />
         { repoInfos }
+        { (commits.isLoading || user.isLoading) && <Loader />  }
         <div className={s.content}>
-          {
-            commits.isLoading || user.isLoading
-              ? <Loader />
-              : pageContent
-          }
+          { pageContent }
         </div>
       </div>
     );

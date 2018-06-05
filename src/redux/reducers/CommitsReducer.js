@@ -3,6 +3,7 @@ import { actionTypes } from '../actions/CommitsActions';
 const initialState = {
   isLoading: false,
   error: false,
+  page: 1,
   list: []
 };
 
@@ -12,12 +13,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
-        list: []
       }
     case actionTypes.REQUEST_COMMITS_SUCCESS:
       return {
         ...state,
-        list: action.commits,
+        list: state.list.concat(action.commits),
+        page: action.page,
         isLoading: false,
         error: null
       }

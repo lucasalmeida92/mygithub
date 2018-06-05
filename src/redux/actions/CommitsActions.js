@@ -11,9 +11,10 @@ export const requestCommits = () => ({
   type: actionTypes.REQUEST_COMMITS,
 });
 
-export const requestCommitsSuccess = commits => ({
+export const requestCommitsSuccess = (commits, page) => ({
   type: actionTypes.REQUEST_COMMITS_SUCCESS,
-  commits: commits
+  commits: commits,
+  page: page
 });
 
 export const requestCommitsError = error => ({
@@ -21,13 +22,13 @@ export const requestCommitsError = error => ({
   error
 });
 
-export const fetchCommits = (username, repoName) => {
+export const fetchCommits = (username, repoName, page) => {
   return dispatch => {
     dispatch(requestCommits());
 
-    getRepositoryCommits(username, repoName)
+    getRepositoryCommits(username, repoName, page)
       .then(commits => {
-        dispatch(requestCommitsSuccess(commits));
+        dispatch(requestCommitsSuccess(commits, page));
       }).catch(error => {
         dispatch(requestCommitsError(error));
       });
