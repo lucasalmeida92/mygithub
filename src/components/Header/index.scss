@@ -1,4 +1,4 @@
-.Header {
+.header {
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -10,38 +10,38 @@
   margin-bottom: 20px;
   padding: 10px 20px;
   color: white;
+}
 
-  &__title {
-    font-size: 1.8em;
-    font-weight: 600;
-    margin: 0;
+.title {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin: 0;
 
-    a {
+  a {
+    color: #fff;
+
+    em {
+      color: #CAD3C8;
+    }
+
+    &:hover {
       color: #fff;
+      text-decoration: none;
+      transform: scale(1.4);
 
-      .fa {
-        margin-right: -7px;
-        color: #FC427B;
-      }
-
-      em {
-        color: #CAD3C8;
-      }
-
-      &:hover {
-        color: #fff;
-        text-decoration: none;
-        transform: scale(1.4);
-
-        .fa {
-          animation-duration: 200ms;
-          animation-name: pop;
-          animation-iteration-count: 2;
-          animation-direction: alternate;
-        }
+      .logoIcon {
+        animation-duration: 200ms;
+        animation-name: pop;
+        animation-iteration-count: 2;
+        animation-direction: alternate;
       }
     }
   }
+}
+
+.logoIcon {
+  margin-right: -7px;
+  color: #FC427B;
 }
 
 @keyframes pop {

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import FA from 'react-fontawesome';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { removeUser } from '../../redux/actions/UserActions';
 import { resetRepositories } from '../../redux/actions/RepositoriesActions';
-import './index.scss';
+import s from './index.scss';
 
 const mapStateToProps = (state, props) => ({
   user: state.user
@@ -36,14 +35,14 @@ class User extends Component {
 
     if(data) {
       return (
-        <div className="User">
-          <div className="User__wrapper">
-            <img className="User__avatar" src={data.avatar_url} alt={data.name} />
-            <div className="User__right">
-              <h3 className="User__username">{ data.login }</h3>
-              <p className="User__name">{ data.name }</p>
+        <div className={s.user}>
+          <div className={s.wrapper}>
+            <img className={s.avatar} src={data.avatar_url} alt={data.name} />
+            <div className={s.right}>
+              <h3 className={s.username}>{ data.login }</h3>
+              <p className={s.name}>{ data.name }</p>
             </div>
-            <a className="User__close-button" href="javascript:void(0)" title="Remove user" onClick={this.handleCloseButton}>X</a>
+            <a className={s.closeButton} href="javascript:void(0)" title="Remove user" onClick={this.handleCloseButton}>X</a>
           </div>
         </div>
       );

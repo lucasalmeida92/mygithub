@@ -1,60 +1,54 @@
-.Commit {
+.commit {
   border-bottom: 1px solid #eee;
   padding: 15px 25px;
-
-  &__message {
-    font-weight: 700;
-    font-size: .9rem;
-    line-height: 1.4;
-    color: #2C3A47;
-
-    &:hover {
-      text-decoration: underline;
-      color: #FC427B;
-    }
-  }
-
-  &__author-avatar {
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
-    margin-right: 7px;
-    background-color: #eee;
-  }
-
-  &__meta {
-    opacity: .5;
-    font-size: .7rem;
-    display: flex;
-    margin-top: 6px;
-    align-items: center;
-    transition: all 200ms ease-out;
-
-    p {
-      display: inline-block;
-
-      strong {
-        font-weight: 700;
-        margin-right: 10px;
-      }
-    }
-  }
-
-  &__date {
-    opacity: .6;
-  }
 
   &:hover {
     background-color: rgba(#F8EFBA, .5);
 
-    .Commit {
-      &__message {
-        font-size: .95rem;
-      }
+    .message {
+      font-size: .95rem;
+    }
 
-      &__meta {
-        opacity: 1;
-      }
+    .meta {
+      opacity: 1;
     }
   }
+}
+.message {
+  font-weight: 700;
+  font-size: .9rem;
+  line-height: 1.4;
+  color: #2C3A47;
+
+  &:hover {
+    text-decoration: underline;
+    color: #FC427B;
+  }
+}
+.authorAvatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  margin-right: 7px;
+  background-color: #eee;
+}
+.meta {
+  opacity: .5;
+  font-size: .7rem;
+  display: flex;
+  margin-top: 6px;
+  align-items: center;
+  transition: all 200ms ease-out;
+
+  p {
+    display: inline-block;
+
+    strong {
+      font-weight: 700;
+      margin-right: 10px;
+    }
+  }
+}
+.date {
+  opacity: .6;
 }

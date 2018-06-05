@@ -6,7 +6,7 @@ import { fetchUserData } from '../../redux/actions/UserActions';
 import Repository from './Repository';
 import Loader from '../../components/Loader';
 import User from '../../components/User';
-import './index.scss';
+import s from './index.scss';
 
 const mapStateToProps = (state, props) => ({
   user: state.user,
@@ -72,11 +72,11 @@ class RepositoriesPage extends Component {
     }
 
     return (
-      <div className="RepositoriesPage">
+      <div>
         <h2>Repositories</h2>
-        <p className="RepositoriesPage__instruction">Click on a repository to see it's commits.</p>
+        <p className={s.instruction}>Click on a repository to see it's commits.</p>
         <User onRemoveUser={this._handleRemoveUser} />
-        <div className="RepositoriesPage__content">
+        <div className={s.content}>
           {
             repositories.isLoading || user.isLoading
               ? <Loader />

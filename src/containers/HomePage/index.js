@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchUserData } from '../../redux/actions/UserActions';
-import './index.scss';
+import s from './index.scss';
 
 const mapStateToProps = (state, props) => ({
   user: state.user
@@ -42,14 +42,12 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="HomePage">
-        <div className="HomePage__content">
-          <p className="HomePage__instruction">Enter your GitHub username:</p>
-          <form>
-            <input className="HomePage__input" type="text" placeholder="ex: lucasalmeida92" onChange={this._handleUsernameChange}/>
-            <button className="button HomePage__load-button" onClick={this._handleLoadReposClick}>Load Repositories</button>
-          </form>
-        </div>
+      <div className={s.content}>
+        <p className={s.instruction}>Enter your GitHub username:</p>
+        <form>
+          <input className={s.input} type="text" placeholder="ex: lucasalmeida92" onChange={this._handleUsernameChange}/>
+          <button className={`button ${s.loadButton}`} onClick={this._handleLoadReposClick}>Load Repositories</button>
+        </form>
       </div>
     );
   }

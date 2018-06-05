@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.scss';
+import s from './index.scss';
 import moment from 'moment';
 
 class Commit extends Component {
@@ -8,17 +8,17 @@ class Commit extends Component {
 
     if(commit) {
       return (
-        <div className="Commit">
-          <a className="Commit__message" href={commit.html_url} target="_blank" title={commit.commit.message}>{ commit.commit.message }</a>
-          <div className="Commit__meta">
-            <img className="Commit__author-avatar" src={commit.author && commit.author.avatar_url} />
+        <div className={s.commit}>
+          <a className={s.message} href={commit.html_url} target="_blank" title={commit.commit.message}>{ commit.commit.message }</a>
+          <div className={s.meta}>
+            <img className={s.authorAvatar} src={commit.author && commit.author.avatar_url} />
             <p>
               <strong>
-              { commit.author
-                ? commit.author.login
-                : commit.commit.author.name }
+                { commit.author
+                  ? commit.author.login
+                  : commit.commit.author.name }
               </strong>
-              <span className="Commit__date">
+              <span className={s.date}>
                 { moment(commit.commit.author.date).startOf('hour').fromNow() }
               </span>
             </p>

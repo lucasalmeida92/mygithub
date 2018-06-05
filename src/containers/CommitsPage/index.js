@@ -6,9 +6,10 @@ import { bindActionCreators } from 'redux';
 import { fetchCommits } from '../../redux/actions/CommitsActions';
 import { fetchUserData } from '../../redux/actions/UserActions';
 import { withRouter } from 'react-router';
-import './index.scss';
+import s from './index.scss';
 import User from '../../components/User';
 import Commit from './Commit';
+import RepoInfos from './RepoInfos';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -67,23 +68,18 @@ class CommitsPage extends Component {
 
     let repoInfos = null;
     if(this.props.selectedRepository) {
-      repoInfos = (
-        <div className="CommitsPage__repo-infos">
-          <h3 className="CommitsPage__repo-name">{this.props.selectedRepository.name}</h3>
-          <p className="CommitsPage__repo-description">{this.props.selectedRepository.description}</p>
-        </div>
-      );
+      repoInfos = <RepoInfos repo={this.props.selectedRepository} />;
     }
 
     return (
-      <div className="CommitsPage">
+      <div>
         <Helmet>
           <title>MyGitHub - Details</title>
         </Helmet>
         <h2>Commits</h2>
         <User onRemoveUser={this._handleRemoveUser} />
         { repoInfos }
-        <div className="CommitsPage__content">
+        <div className={s.content}>
           {
             commits.isLoading || user.isLoading
               ? <Loader />

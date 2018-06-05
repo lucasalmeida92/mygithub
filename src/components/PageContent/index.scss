@@ -1,19 +1,16 @@
-.PageContent {
+.pageContent {
   min-height: calc(100% - 80px);
-
-  &__wrapper {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 1000px;
-    padding: 20px;
-    margin: 0 auto;
-  }
+}
+.wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1000px;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 @media(max-width: 520px) {
-  .PageContent {
-    &__wrapper {
-      padding: 10px;
-    }
+  .wrapper {
+    padding: 10px;
   }
 }
