@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import Loader from '../../components/Loader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchCommits } from '../../redux/actions/CommitsActions';
+import { resetCommits, fetchCommits } from '../../redux/actions/CommitsActions';
 import { fetchUserData } from '../../redux/actions/UserActions';
 import { withRouter } from 'react-router';
 import s from './index.scss';
@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
+    resetCommits,
     fetchCommits,
     fetchUserData
   }, dispatch);
@@ -31,6 +32,10 @@ class CommitsPage extends Component {
     this._handleRemoveUser = this._handleRemoveUser.bind(this);
     this._addEndlessScrollingListenter = this._addEndlessScrollingListenter.bind(this);
     this._loadMoreCommits = this._loadMoreCommits.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.resetCommits();
   }
 
   componentDidMount() {
