@@ -1,10 +1,9 @@
 import request from '../utils/request';
+import accessConfig from './github-tokens';
 
 export const getRepositoryCommits = (username, repoName, page = 1) => {
-  const clientId = '3637542b9793d3c8d09a';
-  const clientSecret = '45993e8366ee56902c25b8c8fc61f642cb31a4fd';
 
-  const reposUrl = `https://api.github.com/repos/${username}/${repoName}/commits?client_id=${clientId}&client_secret=${clientSecret}&per_page=10&page=${page}`;
+  const reposUrl = `https://api.github.com/repos/${username}/${repoName}/commits?client_id=${accessConfig.clientId}&client_secret=${accessConfig.clientSecret}&per_page=10&page=${page}`;
 
   return request(reposUrl);
 }
