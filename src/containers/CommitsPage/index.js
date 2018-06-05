@@ -51,7 +51,7 @@ class CommitsPage extends Component {
       repoName = this.props.selectedRepository.name;
     }
 
-    this.props.fetchCommits(username, repoName, this.props.commits.page);
+    this.props.fetchCommits(username, repoName, 1);
     this._addEndlessScrollingListenter();
   }
 
@@ -61,9 +61,11 @@ class CommitsPage extends Component {
 
   _addEndlessScrollingListenter() {
     window.onscroll = function(e) {
+      if(!this.props.commits.isLastPage) {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
           if(!this.props.commits.isLoading) this._loadMoreCommits();
         }
+      }
     }.bind(this);
   }
 
@@ -106,6 +108,8 @@ class CommitsPage extends Component {
         <div className={s.content}>
           { pageContent }
         </div>
+        {(commits.isLoading && commits.list.length > 0 && !commits.isLastPage) &&
+          <p>Loading more commits...</p>}
       </div>
     );
   }
