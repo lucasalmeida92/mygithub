@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: -20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+
+  label {
+    margin: 7px 10px 7px 10px;
+  }
+}
+.fieldLegend {
+  font-size: .8rem;
+  margin-right: 7px;
+}
+.select {
+  display: inline-block ;
+  width: 175px;
+  height: 36px;
+  margin: 0;
+  padding: 5px;
+  font-size: .9rem;
+}
+.input[type=number] {
+  width: 110px;
+  height: 36px;
+  display: inline-block;
+  margin: 0;
+  padding: 5px;
+  font-size: .9rem;
+}
+.applyButton {
+  margin: 7px !important;
+  font-size: 0.8rem !important;
+}

@@ -4,7 +4,14 @@ const initialState = {
   isLoading: false,
   error: false,
   list: [],
-  selectedRepository: null
+  selectedRepository: null,
+  filters: {
+    stars: {
+      count: 0,
+      operation: 'min'
+    },
+    orderBy: 'last_modified'
+  }
 };
 
 export default (state = initialState, action) => {
@@ -34,12 +41,20 @@ export default (state = initialState, action) => {
       }
     case actionTypes.SELECT_REPOSITORY:
       let selectedRepository = state.list.filter(repo => (
-        repo.name == action.repoName
+        repo.name === action.repoName
       ))[0];
 
       return {
         ...state,
         selectedRepository
+      }
+    case actionTypes.FILTER_REPOSITORIES:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          ...action.filters
+        }
       }
     default:
       return state

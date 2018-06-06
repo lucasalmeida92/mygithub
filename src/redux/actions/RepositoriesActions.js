@@ -6,9 +6,7 @@ export const actionTypes = {
   REQUEST_REPOSITORIES_ERROR: 'REQUEST_REPOSITORIES_ERROR',
   RESET_REPOSITORIES: 'RESET_REPOSITORIES',
   SELECT_REPOSITORY: 'SELECT_REPOSITORY',
-  REQUEST_COMMITS: 'REQUEST_COMMITS',
-  REQUEST_COMMITS_SUCCESS: 'REQUEST_COMMITS_SUCCESS',
-  REQUEST_COMMITS_ERROR: 'REQUEST_COMMITS_ERROR',
+  FILTER_REPOSITORIES: 'FILTER_REPOSITORIES',
 };
 
 export const requestRepositories = () => ({
@@ -46,4 +44,9 @@ export const resetRepositories = () => ({
 export const selectRepository = (repoName) => ({
   type: actionTypes.SELECT_REPOSITORY,
   repoName: repoName
+});
+
+export const filterRepositories = (filters) => ({
+  type: actionTypes.FILTER_REPOSITORIES,
+  filters: filters
 });
