@@ -10,6 +10,8 @@ import s from './index.scss';
 import User from '../../components/User';
 import Commit from './Commit';
 import RepoInfos from './RepoInfos';
+import FA from 'react-fontawesome';
+import faStyles from 'font-awesome/css/font-awesome.css';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -32,6 +34,7 @@ class CommitsPage extends Component {
     this._handleRemoveUser = this._handleRemoveUser.bind(this);
     this._addEndlessScrollingListenter = this._addEndlessScrollingListenter.bind(this);
     this._loadMoreCommits = this._loadMoreCommits.bind(this);
+    this._handleOnBackClick = this._handleOnBackClick.bind(this);
   }
 
   componentWillMount() {
@@ -76,6 +79,12 @@ class CommitsPage extends Component {
     this.props.fetchCommits(username, repoName, page + 1);
   }
 
+  _handleOnBackClick(e) {
+    e.preventDefault();
+    const username = this.props.match.params.username;
+    this.props.history.push(`/${username}`);
+  }
+
   render() {
     const { commits, user } = this.props;
     let pageContent = <p>Loading...</p>;
@@ -104,6 +113,9 @@ class CommitsPage extends Component {
         <h2>Commits</h2>
         <User onRemoveUser={this._handleRemoveUser} />
         { repoInfos }
+        <a className={s.returnLink} href="javascript:void(0)" onClick={this._handleOnBackClick} title="Return to Repositories">
+          <FA name="angle-left" cssModule={faStyles} /> Rerturn to Repositories
+        </a>
         { (commits.isLoading || user.isLoading) && <Loader />  }
         <div className={s.content}>
           { pageContent }

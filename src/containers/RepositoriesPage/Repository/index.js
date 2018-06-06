@@ -7,10 +7,10 @@ class Repository extends Component {
   constructor(props) {
     super(props);
 
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this._handleOnClick = this._handleOnClick.bind(this);
   }
 
-  handleOnClick(e, repositoryName) {
+  _handleOnClick(e, repositoryName) {
     e.preventDefault();
     this.props.onRepoClick(repositoryName);
   }
@@ -19,7 +19,7 @@ class Repository extends Component {
     let { repository } = this.props;
 
     return (
-      <a className={s.wrapper} href="#" onClick={(e) => this.handleOnClick(e, repository.name)} title={repository.name}>
+      <a className={s.wrapper} href="javascript:void(0)" onClick={(e) => this._handleOnClick(e, repository.name)} title={repository.name}>
         <h3 className={s.name}>{ repository.name }</h3>
         <p className={s.description}>{ repository.description }</p>
         <span className={s.stars}>
