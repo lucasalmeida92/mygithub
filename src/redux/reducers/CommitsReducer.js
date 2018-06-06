@@ -3,7 +3,7 @@ import { actionTypes } from '../actions/CommitsActions';
 const initialState = {
   isLoading: false,
   error: false,
-  page: 0,
+  page: 1,
   isLastPage: false,
   list: []
 };
@@ -32,8 +32,7 @@ export default (state = initialState, action) => {
       }
     case actionTypes.RESET_COMMITS:
       return {
-        ...initialState,
-        page: 1
+        ...initialState
       }
     default:
       return state

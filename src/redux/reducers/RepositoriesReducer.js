@@ -3,6 +3,8 @@ import { actionTypes } from '../actions/RepositoriesActions';
 const initialState = {
   isLoading: false,
   error: false,
+  page: 1,
+  isLastPage: false,
   list: [],
   selectedRepository: null,
   filters: {
@@ -19,13 +21,14 @@ export default (state = initialState, action) => {
     case actionTypes.REQUEST_REPOSITORIES:
       return {
         ...state,
-        isLoading: true,
-        list: []
+        isLoading: true
       }
     case actionTypes.REQUEST_REPOSITORIES_SUCCESS:
       return {
         ...state,
-        list: action.repositories,
+        list: state.list.concat(action.repositories),
+        isLastPage: action.repositories.length < 20,
+        page: action.page,
         isLoading: false,
         error: null
       }

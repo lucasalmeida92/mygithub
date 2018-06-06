@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchRepositories, selectRepository } from '../../redux/actions/RepositoriesActions';
+import { resetRepositories, fetchRepositories, selectRepository } from '../../redux/actions/RepositoriesActions';
 import { fetchUserData } from '../../redux/actions/UserActions';
 import Repository from './Repository';
 import Loader from '../../components/Loader';
 import User from '../../components/User';
 import s from './index.scss';
 import Filters from './Filters';
+import filterRepos from './filterRepos';
 
 const mapStateToProps = (state, props) => ({
   user: state.user,
@@ -17,6 +18,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchUserData,
+    resetRepositories,
     fetchRepositories,
     selectRepository
   }, dispatch);
@@ -32,15 +34,22 @@ class RepositoriesPage extends Component {
     };
 
     this._handleRemoveUser = this._handleRemoveUser.bind(this);
+    this._addEndlessScrollingListenter = this._addEndlessScrollingListenter.bind(this);
+    this._loadMoreRepos = this._loadMoreRepos.bind(this);
     this._handleRepoClick = this._handleRepoClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.repositories.filters !== nextProps.repositories.filters) {
+    if (this.props.repositories.filters !== nextProps.repositories.filters ||
+      this.props.repositories.page !== nextProps.repositories.page) {
       this.setState({filtersChanged: true});
     } else {
       this.setState({filtersChanged: false});
     }
+  }
+
+  componentWillMount() {
+    this.props.resetRepositories();
   }
 
   componentDidMount() {
@@ -53,7 +62,8 @@ class RepositoriesPage extends Component {
       username = this.props.user.username;
     }
 
-    this.props.fetchRepositories(username);
+    this.props.fetchRepositories(username, 1);
+    this._addEndlessScrollingListenter();
   }
 
   _handleRemoveUser() {
@@ -66,60 +76,20 @@ class RepositoriesPage extends Component {
     this.props.history.push(`/${username}/${repoName}`);
   }
 
-  _filterRepositories(repos, filters) {
-    let filteredRepos = [...repos];
-
-    if(filters.stars) {
-      filteredRepos = filteredRepos.filter(repo => {
-        if(filters.stars.operation === 'min') {
-          return repo.stargazers_count >= filters.stars.count;
+  _addEndlessScrollingListenter() {
+    window.onscroll = function(e) {
+      if(!this.props.repositories.isLastPage) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+          if(!this.props.repositories.isLoading) this._loadMoreRepos();
         }
-        if(filters.stars.operation === 'max') {
-          return repo.stargazers_count <= filters.stars.count;
-        }
-      });
-    }
+      }
+    }.bind(this);
+  }
 
-    if(filters.orderBy === 'name_asc') {
-      filteredRepos.sort(function (a, b) {
-        if(a.name === b.name) return 0;
-        return (a.name > b.name) ? 1 : -1;
-      });
-    }
-    if(filters.orderBy === 'name_desc') {
-      filteredRepos.sort(function (a, b) {
-        if(a.name === b.name) return 0;
-        return (a.name < b.name) ? 1 : -1;
-      });
-    }
-
-    if(filters.orderBy === 'last_modified') {
-      filteredRepos.sort(function (a, b) {
-        if(a.pushed_at === b.pushed_at) return 0;
-        return (a.pushed_at < b.pushed_at) ? 1 : -1;
-      });
-    }
-    if(filters.orderBy === 'first_modified') {
-      filteredRepos.sort(function (a, b) {
-        if(a.pushed_at === b.pushed_at) return 0;
-        return (a.pushed_at > b.pushed_at) ? 1 : -1;
-      });
-    }
-
-    if(filters.orderBy === 'stars_asc') {
-      filteredRepos.sort(function (a, b) {
-        if(a.stargazers_count === b.stargazers_count) return 0;
-        return (a.stargazers_count > b.stargazers_count) ? 1 : -1;
-      });
-    }
-    if(filters.orderBy === 'stars_desc') {
-      filteredRepos.sort(function (a, b) {
-        if(a.stargazers_count === b.stargazers_count) return 0;
-        return (a.stargazers_count < b.stargazers_count) ? 1 : -1;
-      });
-    }
-
-    return filteredRepos;
+  _loadMoreRepos() {
+    const username = this.props.match.params.username;
+    const page = this.props.repositories.page;
+    this.props.fetchRepositories(username, page + 1);
   }
 
   render() {
@@ -129,7 +99,7 @@ class RepositoriesPage extends Component {
 
     if(repositories.list.length > 0) {
       if(this.state.filtersChanged) {
-        reposList = this._filterRepositories(reposList, repositories.filters);
+        reposList = filterRepos(reposList, repositories.filters);
       }
       pageContent = reposList
         .map((repo, index) => {
@@ -147,13 +117,12 @@ class RepositoriesPage extends Component {
         <p className={s.instruction}>Click on a repository to see it's commits.</p>
         <User onRemoveUser={this._handleRemoveUser} />
         <Filters />
+        { repositories.isLoading || user.isLoading && <Loader /> }
         <div className={s.content}>
           <p className={s.total}>Total: {reposList.length} repositories</p>
-          {
-            repositories.isLoading || user.isLoading
-              ? <Loader />
-              : pageContent
-          }
+          { pageContent }
+          {(repositories.isLoading && reposList.length > 0 && !repositories.isLastPage) &&
+            <p>Loading more repos...</p>}
         </div>
       </div>
     );

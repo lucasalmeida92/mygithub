@@ -13,9 +13,10 @@ export const requestRepositories = () => ({
   type: actionTypes.REQUEST_REPOSITORIES,
 });
 
-export const requestRepositoriesSuccess = repositories => ({
+export const requestRepositoriesSuccess = (repositories, page) => ({
   type: actionTypes.REQUEST_REPOSITORIES_SUCCESS,
-  repositories: repositories
+  repositories,
+  page
 });
 
 export const requestRepositoriesError = error => ({
@@ -23,14 +24,13 @@ export const requestRepositoriesError = error => ({
   error
 });
 
-export const fetchRepositories = username => {
+export const fetchRepositories = (username, page) => {
   return dispatch => {
     dispatch(requestRepositories());
 
-    getUserRepositories(username)
+    getUserRepositories(username, page)
       .then(repositories => {
-        console.log(repositories);
-        dispatch(requestRepositoriesSuccess(repositories));
+        dispatch(requestRepositoriesSuccess(repositories, page));
       }).catch(error => {
         dispatch(requestRepositoriesError(error));
       });

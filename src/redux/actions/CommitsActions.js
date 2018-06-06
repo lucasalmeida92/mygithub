@@ -13,8 +13,8 @@ export const requestCommits = () => ({
 
 export const requestCommitsSuccess = (commits, page) => ({
   type: actionTypes.REQUEST_COMMITS_SUCCESS,
-  commits: commits,
-  page: page
+  commits,
+  page
 });
 
 export const requestCommitsError = error => ({

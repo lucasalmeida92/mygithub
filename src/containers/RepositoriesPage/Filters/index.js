@@ -67,9 +67,9 @@ class Filters extends Component {
       <form className={s.wrapper}>
         <label>
           <span className={s.fieldLegend}>Order by:</span>
-          <select className={s.select} onChange={this._handleOrderByChange}>
+          <select className={s.select} defaultValue="last_modified" onChange={this._handleOrderByChange}>
             <option value="first_modified">First modified</option>
-            <option selected value="last_modified">Last modified</option>
+            <option value="last_modified">Last modified</option>
             <option value="name_asc">Name (ascending)</option>
             <option value="name_desc">Name (descending)</option>
             <option value="stars_asc">Stars (ascending)</option>
