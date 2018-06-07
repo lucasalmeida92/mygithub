@@ -79,7 +79,7 @@ class RepositoriesPage extends Component {
   _addEndlessScrollingListenter() {
     window.onscroll = function(e) {
       if(!this.props.repositories.isLastPage) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
           if(!this.props.repositories.isLoading) this._loadMoreRepos();
         }
       }

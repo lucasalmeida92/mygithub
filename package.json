@@ -58,6 +58,8 @@
     "deploy": "rimraf build && npm run build && surge -d https://mygithub.surge.sh -p build"
   },
   "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>config/setupTests.js",
+    "verbose": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
@@ -100,8 +102,11 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "node-sass": "^4.9.0",
     "react-router-dom": "^4.3.0-rc.3",
+    "redux-mock-store": "^1.5.1",
     "sass-loader": "^7.0.1"
   }
 }

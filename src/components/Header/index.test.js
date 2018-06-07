@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as TestUtils from 'react-dom/test-utils';
+import { shallow } from 'enzyme';
 import Header from './index';
 
-it('creates a header element with Header class', () => {
-  // Render a Header in the document
-  const header = TestUtils.renderIntoDocument(
-    <Header />
-  );
-  const headerNode = ReactDOM.findDOMNode(header);
-  // Verify that className equals 'Header'
-  expect(headerNode.className).toEqual('Header');
+describe('Header', () => {
+  it('should be a <h1> element', () => {
+    const wrapper = shallow(
+      <Header />
+    );
+    expect(wrapper.find('h1')).toHaveLength(1);
+  });
 });
+
+
