@@ -65,7 +65,7 @@ class CommitsPage extends Component {
   _addEndlessScrollingListenter() {
     window.onscroll = function(e) {
       if(!this.props.commits.isLastPage) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
           if(!this.props.commits.isLoading) this._loadMoreCommits();
         }
       }

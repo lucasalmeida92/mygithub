@@ -79,7 +79,7 @@ class RepositoriesPage extends Component {
   _addEndlessScrollingListenter() {
     window.onscroll = function(e) {
       if(!this.props.repositories.isLastPage) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
           if(!this.props.repositories.isLoading) this._loadMoreRepos();
         }
       }
@@ -117,7 +117,7 @@ class RepositoriesPage extends Component {
         <p className={s.instruction}>Click on a repository to see it's commits.</p>
         <User onRemoveUser={this._handleRemoveUser} />
         <Filters />
-        { repositories.isLoading || user.isLoading && <Loader /> }
+        { (repositories.isLoading || user.isLoading) && <Loader /> }
         <div className={s.content}>
           <p className={s.total}>Total: {reposList.length} repositories</p>
           { pageContent }
